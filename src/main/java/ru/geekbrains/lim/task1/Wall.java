@@ -1,6 +1,6 @@
 package ru.geekbrains.lim.task1;
 
-public class Wall implements Obstruction{
+public class Wall implements Obstruction {
     int height;
 
     public Wall(int height) {
@@ -18,10 +18,10 @@ public class Wall implements Obstruction{
     @Override
     public boolean overcome(Participant participant) {
         if (participant.jump(height)) {
-            System.out.println("успешно "  + height + " метров");
+            System.out.println("успешно " + height + " метров");
             return true;
         } else {
-            System.out.println("не успешно "  + height + " метров");
+            System.out.println("не успешно " + height + " метров");
             return false;
         }
     }
