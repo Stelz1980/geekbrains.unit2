@@ -2,27 +2,11 @@ package ru.geekbrains.lim.task1;
 
 public class Robot implements Participant {
 
-    private int maxRunDistance;
-    private int maxJumpHeight;
+    private final int maxRunDistance;
+    private final int maxJumpHeight;
 
     public Robot(int maxRunDistance, int maxJumpHeight) {
         this.maxRunDistance = maxRunDistance;
-        this.maxJumpHeight = maxJumpHeight;
-    }
-
-    public int getMaxRunDistance() {
-        return maxRunDistance;
-    }
-
-    public void setMaxRunDistance(int maxRunDistance) {
-        this.maxRunDistance = maxRunDistance;
-    }
-
-    public int getMaxJumpHeight() {
-        return maxJumpHeight;
-    }
-
-    public void setMaxJumpHeight(int maxJumpHeight) {
         this.maxJumpHeight = maxJumpHeight;
     }
 

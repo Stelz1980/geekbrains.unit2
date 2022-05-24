@@ -1,17 +1,9 @@
 package ru.geekbrains.lim.task1;
 
 public class Treadmill implements Obstruction{
-    int distance;
+    private final int distance;
 
     public Treadmill(int distance) {
-        this.distance = distance;
-    }
-
-    public int getDistance() {
-        return distance;
-    }
-
-    public void setDistance(int distance) {
         this.distance = distance;
     }
 
