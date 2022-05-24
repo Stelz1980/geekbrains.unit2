@@ -20,7 +20,7 @@ public class HomeWorkApp {
 
         for (Participant participant : participants) {
             for (Obstruction obstruction : obstructions) {
-                if (!obstruction.move(participant)) {
+                if (!obstruction.overcome(participant)) {
                     break;
                 }
             }
