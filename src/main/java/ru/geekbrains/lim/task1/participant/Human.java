@@ -2,6 +2,7 @@ package ru.geekbrains.lim.task1.participant;
 
 public class Human implements Participant {
 
+    private final String PARTICIPANT = "Человек";
     private final int maxRunDistance;
     private final int maxJumpHeight;
 
@@ -12,13 +13,24 @@ public class Human implements Participant {
 
     @Override
     public boolean run(int distance) {
-        System.out.print("Человек пробежал ");
-        return maxRunDistance >= distance;
+        if (maxRunDistance >= distance) {
+            System.out.println(PARTICIPANT + " пробежал успешно " + distance + " метров" );
+            return true;
+
+        } else {
+            System.out.println(PARTICIPANT + " не смог пробежать " + distance + " метров");
+            return false;
+        }
      }
 
     @Override
     public boolean jump(int height) {
-        System.out.print("Человек прыгнул ");
-        return maxJumpHeight >= height;
+        if (maxJumpHeight >= height) {
+            System.out.println(PARTICIPANT + " прыгнул успешно на " + height + " метров");
+            return true;
+        } else {
+            System.out.println(PARTICIPANT + " не смог прыгнуть успешно на " + height + " метров");
+            return false;
+        }
     }
 }

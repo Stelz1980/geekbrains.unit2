@@ -11,12 +11,6 @@ public class Wall implements Obstruction {
 
     @Override
     public boolean overcome(Participant participant) {
-        if (participant.jump(height)) {
-            System.out.println("успешно " + height + " метров");
-            return true;
-        } else {
-            System.out.println("не успешно " + height + " метров");
-            return false;
-        }
+        return participant.jump(height);
     }
 }

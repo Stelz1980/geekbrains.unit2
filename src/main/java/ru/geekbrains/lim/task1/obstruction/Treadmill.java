@@ -11,12 +11,6 @@ public class Treadmill implements Obstruction{
 
     @Override
     public boolean overcome(Participant participant) {
-        if (participant.run(distance)) {
-            System.out.println("успешно " + distance + " метров");
-            return true;
-        } else {
-            System.out.println("не успешно "  + distance + " метров");
-            return false;
-        }
+        return participant.run(distance);
     }
 }
