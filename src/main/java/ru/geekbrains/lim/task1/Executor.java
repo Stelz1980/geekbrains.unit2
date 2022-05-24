@@ -1,8 +1,16 @@
 package ru.geekbrains.lim.task1;
 
+import ru.geekbrains.lim.task1.obstruction.Obstruction;
+import ru.geekbrains.lim.task1.obstruction.Treadmill;
+import ru.geekbrains.lim.task1.obstruction.Wall;
+import ru.geekbrains.lim.task1.participant.Cat;
+import ru.geekbrains.lim.task1.participant.Human;
+import ru.geekbrains.lim.task1.participant.Participant;
+import ru.geekbrains.lim.task1.participant.Robot;
+
 import java.util.Random;
 
-public class HomeWorkApp {
+public class Executor {
 
     public static void main(String[] args) {
 

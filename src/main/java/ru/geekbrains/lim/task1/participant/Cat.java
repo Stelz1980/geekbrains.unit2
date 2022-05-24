@@ -1,24 +1,24 @@
-package ru.geekbrains.lim.task1;
+package ru.geekbrains.lim.task1.participant;
 
-public class Robot implements Participant {
+public class Cat implements Participant {
 
     private final int maxRunDistance;
     private final int maxJumpHeight;
 
-    public Robot(int maxRunDistance, int maxJumpHeight) {
+    public Cat(int maxRunDistance, int maxJumpHeight) {
         this.maxRunDistance = maxRunDistance;
         this.maxJumpHeight = maxJumpHeight;
     }
 
     @Override
     public boolean run(int distance) {
-        System.out.print("Робот пробежал ");
+        System.out.print("Кот пробежал ");
         return maxRunDistance >= distance;
     }
 
     @Override
     public boolean jump(int height) {
-        System.out.print("Робот прыгнул ");
+        System.out.print("Кот прыгнул ");
         return maxJumpHeight >= height;
     }
 }

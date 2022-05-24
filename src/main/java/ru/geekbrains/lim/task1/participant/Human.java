@@ -1,4 +1,4 @@
-package ru.geekbrains.lim.task1;
+package ru.geekbrains.lim.task1.participant;
 
 public class Human implements Participant {
 

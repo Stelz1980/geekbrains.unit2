@@ -1,4 +1,6 @@
-package ru.geekbrains.lim.task1;
+package ru.geekbrains.lim.task1.obstruction;
+
+import ru.geekbrains.lim.task1.participant.Participant;
 
 public class Treadmill implements Obstruction{
     private final int distance;
