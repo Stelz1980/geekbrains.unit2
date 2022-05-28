@@ -12,13 +12,11 @@ public class Executor {
                 {"12", "2A", "3", "4" },
                 {"12", "2", "3", "4" }
         };
-
         try {
             System.out.println(sumArray(s));
         } catch (ArrayLengthException e) {
             e.printStackTrace();
         }
-
     }
 
     private static int sumArray(String[][] arr) throws ArrayLengthException {
