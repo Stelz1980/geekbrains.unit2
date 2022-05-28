@@ -32,7 +32,7 @@ public class Executor {
                     s += Integer.parseInt(arr[i][j]);
                 } catch (NumberFormatException e) {
                     System.out.println(String.format(ARRAY_VALUE_IS_NOT_NUMBER_MESSAGE, i, j, arr[i][j]));
-                    throw new RuntimeException();
+                    throw e;
                 }
             }
         }
