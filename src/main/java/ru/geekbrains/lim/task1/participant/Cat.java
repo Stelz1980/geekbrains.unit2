@@ -2,7 +2,6 @@ package ru.geekbrains.lim.task1.participant;
 
 public class Cat implements Participant {
 
-
     private final String PARTICIPANT = "Кот";
     private final int maxRunDistance;
     private final int maxJumpHeight;

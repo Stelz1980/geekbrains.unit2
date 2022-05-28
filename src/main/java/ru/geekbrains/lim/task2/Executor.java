@@ -15,8 +15,7 @@ public class Executor {
 
         try {
             System.out.println(sumArray(s));
-        } catch (
-                ArrayLengthException e) {
+        } catch (ArrayLengthException e) {
             e.printStackTrace();
         }
 
