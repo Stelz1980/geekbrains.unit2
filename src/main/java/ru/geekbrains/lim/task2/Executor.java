@@ -22,13 +22,10 @@ public class Executor {
     }
 
     private static int sumArray(String[][] arr) throws ArrayLengthException {
-
         int s = 0;
-
         if (arr.length != ARRAY_LENGTH || arr[0].length != ARRAY_LENGTH) {
             throw new ArrayLengthException(String.format("Размер массива не равен %d x %d", ARRAY_LENGTH, ARRAY_LENGTH));
         }
-
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 try {
@@ -42,5 +39,4 @@ public class Executor {
         }
         return s;
     }
-
 }
