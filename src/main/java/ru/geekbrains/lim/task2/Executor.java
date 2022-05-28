@@ -9,8 +9,8 @@ public class Executor {
         String[][] s = {
                 {"12", "2", "3", "4" },
                 {"12", "2", "3", "4" },
-                {"12", "2A", "3", "4" },
-                {"12", "2", "3", "4" }
+                {"12", "2", "3", "4" },
+                {"12", "x", "3", "4" }
         };
         try {
             System.out.println(sumArray(s));
@@ -27,8 +27,7 @@ public class Executor {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 try {
-                    int a = Integer.parseInt(arr[i][j]);
-                    s += a;
+                    s += Integer.parseInt(arr[i][j]);
                 } catch (NumberFormatException e) {
                     System.out.println(String.format("Значение массима [%d][%d]: %s не является числом ", i, j, arr[i][j]));
                     throw new RuntimeException();
