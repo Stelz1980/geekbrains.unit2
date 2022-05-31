@@ -1,5 +1,6 @@
 package ru.geekbrains.lim.task2;
 
+import ru.geekbrains.lim.task2.exceptions.MyArrayDataException;
 import ru.geekbrains.lim.task2.exceptions.MyArraySizeException;
 
 public class Executor {
@@ -12,16 +13,18 @@ public class Executor {
                 {"12", "2", "3", "4" },
                 {"12", "2", "3", "4" },
                 {"12", "2", "3", "4" },
-                {"12", "85", "3", "4" }
+                {"12", "85", "ы3", "4" }
         };
         try {
             System.out.println(sumArray(s));
         } catch (MyArraySizeException e) {
             e.printStackTrace();
+        } catch (MyArrayDataException e) {
+            e.printStackTrace();
         }
     }
 
-    private static int sumArray(String[][] arr) throws MyArraySizeException {
+    private static int sumArray(String[][] arr) throws MyArraySizeException, MyArrayDataException {
         int s = 0;
         if (arr.length != ARRAY_LENGTH || arr[0].length != ARRAY_LENGTH) {
             throw new MyArraySizeException(String.format(WRONG_ARRAY_SIZE_MESSAGE, ARRAY_LENGTH, ARRAY_LENGTH));
@@ -38,7 +41,7 @@ public class Executor {
                 try {
                     s += Integer.parseInt(arr[i][j]);
                 } catch (NumberFormatException e) {
-                    throw new MyArraySizeException(String.format(ARRAY_VALUE_IS_NOT_NUMBER_MESSAGE, i, j, arr[i][j]));
+                    throw new MyArrayDataException(String.format(ARRAY_VALUE_IS_NOT_NUMBER_MESSAGE, i, j, arr[i][j]));
                 }
             }
         }
