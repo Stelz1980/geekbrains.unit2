@@ -1,4 +1,4 @@
-package ru.geekbrains.lim.task3;
+package ru.geekbrains.lim.task3.phonebook;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -6,21 +6,9 @@ import java.util.Map;
 
 public class PhoneBook {
 
+    private Map<String, HashSet<String>> phoneBook = new HashMap<>();
 
-    public static void main(String[] args) {
-
-        Map<String, HashSet<String>> phoneBook = new HashMap<>();
-        add(phoneBook, "Ivanov", "81234567");
-        add(phoneBook, "Ivanov", "8123w567");
-        add(phoneBook, "Ivanov", "8123w564");
-        add(phoneBook, "Ivanov", "8123w564");
-        add(phoneBook, "Petrov", "8123w564");
-        add(phoneBook, "Petrov", "8123w56e");
-        get(phoneBook, "Ivanov");
-        get(phoneBook, "Smirnov");
-    }
-
-    private static void add(Map<String, HashSet<String>> phoneBook, String secondName, String phoneNumber) {
+    public void add(String secondName, String phoneNumber) {
         if (phoneBook.containsKey(secondName)) {
             phoneBook.get(secondName).add(phoneNumber);
         } else {
@@ -30,7 +18,7 @@ public class PhoneBook {
         }
     }
 
-    private static void get(Map<String, HashSet<String>> phoneBook, String secondName) {
+    public void get(String secondName) {
         if (phoneBook.containsKey(secondName)) {
             System.out.print("Абонент " + secondName + ": ");
             System.out.println(phoneBook.get(secondName));
