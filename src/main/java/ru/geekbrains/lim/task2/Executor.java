@@ -5,8 +5,8 @@ import ru.geekbrains.lim.task2.exceptions.MyArraySizeException;
 
 public class Executor {
     private static final int ARRAY_LENGTH = 4;
-    public static final String WRONG_ARRAY_SIZE_MESSAGE = "Размер массива не равен %d x %d";
-    public static final String ARRAY_VALUE_IS_NOT_NUMBER_MESSAGE = "Значение массива [%d][%d]: %s не является числом ";
+    private static final String WRONG_ARRAY_SIZE_MESSAGE = "Размер массива не равен %d x %d";
+    private static final String ARRAY_VALUE_IS_NOT_NUMBER_MESSAGE = "Значение массива [%d][%d]: %s не является числом ";
 
     public static void main(String[] args) {
         String[][] s = {
@@ -18,7 +18,7 @@ public class Executor {
         try {
             System.out.println(sumArray(s));
         } catch (MyArraySizeException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         } catch (MyArrayDataException e) {
             e.printStackTrace();
         }
