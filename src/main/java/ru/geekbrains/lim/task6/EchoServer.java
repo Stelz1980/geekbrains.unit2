@@ -21,12 +21,18 @@ public class EchoServer {
         try {
             startServer();
             Scanner scanner = new Scanner(System.in);
-            while (socket != null) {
-                sendMessage(scanner.nextLine());
+            while (true) {
+                final String message = scanner.nextLine();
+                if (!socket.isClosed()) {
+                    sendMessage(message);
+                } else {
+                    break;
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     private void sendMessage(String message) {
@@ -38,31 +44,33 @@ public class EchoServer {
     }
 
     private void startServer() throws IOException {
-        ServerSocket serverSocket = new ServerSocket(PORT);
-        System.out.println("Сервер запущен. Ждем подключения клиента ");
-        socket = serverSocket.accept();
-        System.out.println("Клиент подключился");
-        in = new DataInputStream(socket.getInputStream());
-        out = new DataOutputStream(socket.getOutputStream());
-        Thread listenClient = new Thread(() -> {
-            try {
-                while (true) {
-                    String str;
-                    str = in.readUTF();
-                    if (str.equalsIgnoreCase("/end")) {
+
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            System.out.println("Сервер запущен. Ждем подключения клиента ");
+            socket = serverSocket.accept();
+            System.out.println("Клиент подключился");
+            in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
+            Thread listenClient = new Thread(() -> {
+                try {
+                    while (true) {
+                        String str;
+                        str = in.readUTF();
+                        if (str.equalsIgnoreCase("/end")) {
+                            out.writeUTF(str);
+                            break;
+                        }
+                        System.out.println("Сообщение от клиента: " + str);
                         out.writeUTF(str);
-                        break;
                     }
-                    System.out.println("Сообщение от клиента: " + str);
-                    out.writeUTF(str);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    closeConnection();
                 }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } finally {
-                closeConnection();
-            }
-        });
-        listenClient.start();
+            });
+            listenClient.start();
+        }
     }
 
     private void closeConnection() {

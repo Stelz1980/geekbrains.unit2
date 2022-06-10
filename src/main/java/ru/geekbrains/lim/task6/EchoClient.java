@@ -21,8 +21,12 @@ public class EchoClient {
         try {
             openConnection();
             Scanner scanner = new Scanner(System.in);
-            while (socket != null) {
-                sendMessage(scanner.nextLine());
+            while (true) {
+                final String message = scanner.nextLine();
+                sendMessage(message);
+                if (message.equalsIgnoreCase("/end")) {
+                    break;
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -57,6 +61,7 @@ public class EchoClient {
                 closeConnection();
             }
         });
+        thread.setPriority(Thread.MAX_PRIORITY);
         thread.start();
     }
 
@@ -71,6 +76,7 @@ public class EchoClient {
         if (out != null) {
             try {
                 out.close();
+                out = null;
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
