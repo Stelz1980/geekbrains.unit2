@@ -46,7 +46,7 @@ public class EchoClient {
                     System.out.println("Сообщение от сервера " + message);
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
             } finally {
                 closeConnection();
             }
@@ -60,7 +60,7 @@ public class EchoClient {
             try {
                 in.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
             }
         }
         if (out != null) {
