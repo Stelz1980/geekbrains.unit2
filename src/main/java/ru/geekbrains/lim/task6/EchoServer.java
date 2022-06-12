@@ -21,20 +21,20 @@ public class EchoServer {
         try {
             startServer();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
 
     }
 
     private void startServer() throws IOException {
-
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             System.out.println("Сервер запущен. Ждем подключения клиента ");
             socket = serverSocket.accept();
             System.out.println("Клиент подключился");
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-            PrintThread printThread = new PrintThread(true, out);
+            PrintThread printThread = new PrintThread( out);
+            printThread.setDaemon(true);
             printThread.start();
             Thread listenClient = new Thread(() -> {
                 try {
@@ -43,15 +43,13 @@ public class EchoServer {
                         str = in.readUTF();
                         if (str.equalsIgnoreCase(SERVER_TO_TERMINATE)) {
                             out.writeUTF(str);
-                            printThread.setServerActive(false);
-                            printThread.join();
                             break;
                         }
                         System.out.println("Сообщение от клиента: " + str);
                         out.writeUTF(str);
                     }
-                } catch (IOException | InterruptedException e) {
-                    throw new RuntimeException(e);
+                } catch (IOException  e) {
+                    System.out.println(e.getMessage());
                 } finally {
                     closeConnection();
                 }
@@ -65,21 +63,21 @@ public class EchoServer {
             try {
                 in.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
             }
         }
         if (out != null) {
             try {
                 out.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
             }
         }
         if (socket != null) {
             try {
                 socket.close();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
             }
         }
     }
