@@ -15,8 +15,7 @@ public class EchoClient {
     private DataOutputStream out;
 
     public static void main(String[] args) {
-        EchoClient echoClient = new EchoClient();
-        echoClient.start();
+        new EchoClient().start();
     }
 
     private void start() {
