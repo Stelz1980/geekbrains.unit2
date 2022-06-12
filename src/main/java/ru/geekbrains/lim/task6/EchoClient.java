@@ -20,10 +20,10 @@ public class EchoClient {
     }
 
     private void start() {
-            openConnection();
+        openConnection();
     }
 
-    private void openConnection()  {
+    private void openConnection() {
         try {
             socket = new Socket(SERVER_ADDR, SERVER_PORT);
             in = new DataInputStream(socket.getInputStream());
@@ -66,7 +66,6 @@ public class EchoClient {
         if (out != null) {
             try {
                 out.close();
-                out = null;
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
