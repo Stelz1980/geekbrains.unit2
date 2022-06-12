@@ -13,6 +13,7 @@ public class EchoServer {
     private DataInputStream in;
     private DataOutputStream out;
 
+
     public static void main(String[] args) {
         new EchoServer().start();
     }
@@ -20,28 +21,12 @@ public class EchoServer {
     private void start() {
         try {
             startServer();
-            Scanner scanner = new Scanner(System.in);
-            while (true) {
-                final String message = scanner.nextLine();
-                if (!socket.isClosed()) {
-                    sendMessage(message);
-                } else {
-                    break;
-                }
-            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    private void sendMessage(String message) {
-        try {
-            out.writeUTF(message);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private void startServer() throws IOException {
 
@@ -51,6 +36,8 @@ public class EchoServer {
             System.out.println("Клиент подключился");
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
+            PrintThread printThread = new PrintThread(true, out);
+            printThread.start();
             Thread listenClient = new Thread(() -> {
                 try {
                     while (true) {
@@ -58,12 +45,14 @@ public class EchoServer {
                         str = in.readUTF();
                         if (str.equalsIgnoreCase("/end")) {
                             out.writeUTF(str);
+                            printThread.setServerActive(false);
+                            printThread.join();
                             break;
                         }
                         System.out.println("Сообщение от клиента: " + str);
                         out.writeUTF(str);
                     }
-                } catch (IOException e) {
+                } catch (IOException | InterruptedException e) {
                     throw new RuntimeException(e);
                 } finally {
                     closeConnection();
