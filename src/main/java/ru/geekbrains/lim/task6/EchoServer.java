@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class EchoServer {
     private static final int PORT = 8189;
+    private static final String SERVER_TO_TERMINATE = "/end";
     private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
-
 
     public static void main(String[] args) {
         new EchoServer().start();
@@ -26,7 +26,6 @@ public class EchoServer {
         }
 
     }
-
 
     private void startServer() throws IOException {
 
@@ -43,7 +42,7 @@ public class EchoServer {
                     while (true) {
                         String str;
                         str = in.readUTF();
-                        if (str.equalsIgnoreCase("/end")) {
+                        if (str.equalsIgnoreCase(SERVER_TO_TERMINATE)) {
                             out.writeUTF(str);
                             printThread.setServerActive(false);
                             printThread.join();
